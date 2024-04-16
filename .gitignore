@@ -146,3 +146,5 @@ dist
 /.idea/php.xml
 /.idea/vcs.xml
 /test-results/junit.xml
+/output/result.txt
+/output/testResult.txt
