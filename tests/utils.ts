@@ -1,34 +1,44 @@
 import { Utils } from "../src/utils";
 
-describe('utils', () => {
-  it('should return number of characters in a string', () => {
-    const text = 'aaabbba';
-    const character = 'a';
-    const numberOfCharacters = 4;
-    expect(Utils.characterCount(text, character)).toBe(numberOfCharacters);
-  });
-
-    it('should return the count of a move up character', () => {
-        const text : string = 'uduududdu';
-        const numberOfMoveUpCharacters = 5;
-        process.env.CHARACTER_MOVE_UP = 'u';
-        expect(Utils.numberOfMovesUp(text)).toBe(numberOfMoveUpCharacters);
+describe('Utils', () => {
+    it('should return correct character count for non-empty string and existing character', () => {
+        const text = 'abcabcabc';
+        const character = 'a';
+        const expectedCount = 3;
+        expect(Utils.characterCount(text, character)).toBe(expectedCount);
     });
 
-
-
-    it('should return the count of a move down character', () => {
-        const text : string = 'uududddu)';
-        const numberOfMoveDownCharacters = 4;
-        process.env.CHARACTER_MOVE_DOWN = 'd';
-        expect(Utils.numberOfMovesUp(text)).toBe(numberOfMoveDownCharacters);
+    it('should return zero for non-empty string and non-existing character', () => {
+        const text = 'abcabcabc';
+        const character = 'd';
+        expect(Utils.characterCount(text, character)).toBe(0);
     });
 
-    it('should return the resulting floor', () => {
-        const text : string = 'uduududdu';
-        const resultingFloor = 1;
+    it('should return zero for empty string regardless of character', () => {
+        const text = '';
+        const character = 'a';
+        expect(Utils.characterCount(text, character)).toBe(0);
+    });
+
+    it('should return correct number of moves up for non-empty string and existing move up character', () => {
+        process.env.CHARACTER_MOVE_UP = 'u';
+        const text = 'uudud';
+        const expectedCount = 3;
+        expect(Utils.numberOfMovesUp(text)).toBe(expectedCount);
+    });
+
+    it('should return correct number of moves down for non-empty string and existing move down character', () => {
+        process.env.CHARACTER_MOVE_DOWN = 'd';
+        const text = 'uudud';
+        const expectedCount = 2;
+        expect(Utils.numberOfMovesDown(text)).toBe(expectedCount);
+    });
+
+    it('should return correct resulting floor for non-empty string and existing move up and down characters', () => {
         process.env.CHARACTER_MOVE_UP = 'u';
         process.env.CHARACTER_MOVE_DOWN = 'd';
-        expect(Utils.calculateResultingFloor(text)).toBe(resultingFloor);
+        const text = 'uudud';
+        const expectedFloor = 1;
+        expect(Utils.calculateResultingFloor(text)).toBe(expectedFloor);
     });
 });
