@@ -28,7 +28,7 @@ export class Utils {
      * @returns {number} The number of 'move up' characters in the text.
      */
     public static numberOfMovesUp(text: string): number {
-        if (!process.env.CHARACTER_MOVE_UP) throw new Error("Please set the required environment variables.");
+        if (!process.env.CHARACTER_MOVE_UP) throw new Error("Please set the required environment variable CHARACTER_MOVE_UP.");
 
         return this.characterCount(text, process.env.CHARACTER_MOVE_UP);
     }
@@ -41,7 +41,7 @@ export class Utils {
      * @returns {number} The number of 'move down' characters in the text.
      */
     public static numberOfMovesDown(text: string): number {
-        if (!process.env.CHARACTER_MOVE_DOWN) throw new Error("Please set the required environment variables.");
+        if (!process.env.CHARACTER_MOVE_DOWN) throw new Error("Please set the required environment variable CHARACTER_MOVE_DOWN.");
 
         return this.characterCount(text, process.env.CHARACTER_MOVE_DOWN);
     }
